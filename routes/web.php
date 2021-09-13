@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    dd(\App\Models\User::find(42)->changes);
 });
 
 Auth::routes();

@@ -12,4 +12,5 @@ class AuditController extends Controller
         $audits=User::find($id)->audits;
         return view('audit.index',compact('audits'));
     }
+
 }

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Models\Audit;
 
 class User extends Authenticatable implements Auditable
 {
@@ -24,6 +25,11 @@ class User extends Authenticatable implements Auditable
         'email',
         'password',
     ];
+
+    public function changes()
+    {
+        return $this->hasMany(Audit::class, 'user_id', 'id')->latest();
+    }
 
     /**
      * The attributes that should be hidden for serialization.
